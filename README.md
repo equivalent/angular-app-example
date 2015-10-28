@@ -1,5 +1,6 @@
 Just playing around with Angular
 
+http://equivalent.github.io/angular-app-example
 
 ### Sources
 
