@@ -55,10 +55,20 @@
               Create Bookmark
             </button>
 
-            <div ng-if="isCreating" class="well">
-              Create a bookmark
+            <form ng-show="isCreating" ng-submit="createBookmark(newBookmark)" role="form" novalidate >
+              <div class="form-group">
+                <label for="newBookmarkName">Name</label>
+                <input type="text" name="name" id="newBookmarkName" ng-model="newBookmark.name" placeholder="Name the Bookmark" class="form-control"/>
+              </div>
+
+              <div class="form-group">
+                <label for="newBookmarkUrl" >Url</label>
+                <input type="text" name="name" id="newBookmarkUrl" ng-model="newBookmark.url" placeholder="http://www.google.com" class="form-control"/>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Save</button>
               <button type="button" class="btn btn-warning pull-right" ng-click="cancelCreating()">Cancel</button>
-            </div>
+            </form>
           </div>
 
           <!--Editing section-->

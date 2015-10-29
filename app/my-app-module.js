@@ -37,6 +37,8 @@ angular.module('MyAppModule', [])
   function startCreating(){
     $scope.isCreating = true;
     $scope.isEditing = false;
+
+    resetCreateForm()
   }
 
   function cancelCreating(){
@@ -66,5 +68,26 @@ angular.module('MyAppModule', [])
   $scope.cancelEditing      = cancelEditing;
   $scope.shouldShowCreating = shouldShowCreating;
   $scope.shouldShowEditing  = shouldShowEditing;
+
+  //------------------------------------------
+  // CURD
+  //------------------------------------------
+  function resetCreateForm() {
+    $scope.newBookmark = {
+      title: '',
+      url: '',
+      id: '',
+      category: $scope.currentCategory.name
+    }
+  }
+
+  function createBookmark(bookmark) {
+    bookmark.id = $scope.bookmarks.length; //stupid ID for now
+
+    $scope.bookmarks.push(bookmark);
+    resetCreateForm()
+  }
+
+  $scope.createBookmark = createBookmark;
 
 });
