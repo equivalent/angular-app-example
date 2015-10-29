@@ -90,4 +90,30 @@ angular.module('MyAppModule', [])
 
   $scope.createBookmark = createBookmark;
 
+  $scope.editedBookmark = null;
+
+  function setEditedBookmark(bookmark) {
+    $scope.editedBookmark = angular.copy(bookmark);
+  }
+
+  $scope.setEditedBookmark = setEditedBookmark;
+
+  function updateBookmark(bookmark) {
+    var index = _.findIndex($scope.bookmarks, function(b) {
+      return b.id == bookmark.id;
+    });
+
+    $scope.bookmarks[index] = bookmark;
+
+    $scope.editedBookmark = null;
+    $scope.isEditing = false;
+  }
+
+  $scope.updateBookmark = updateBookmark;
+
+  function isSelectedBookmark(bookmark) {
+    return bookmark.id !== null && $scope.editedBookmark !== null && bookmark.id == $scope.editedBookmark.id;
+  }
+
+  $scope.isSelectedBookmark = isSelectedBookmark;
 });

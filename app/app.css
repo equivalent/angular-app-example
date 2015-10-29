@@ -1,5 +1,6 @@
 .active {
   font-weight: bold;
+  color: red;
 }
 .active a {
   color: red;

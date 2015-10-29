@@ -41,8 +41,8 @@
           <h2>Bookmarks</h2>
 
           <ul class="list-unstyled">
-            <li ng-repeat="bookmark in bookmarks | filter:{category:currentCategory.name}">
-              <button type="button" ng-click="startEditing()"><i class="glyphicon glyphicon-pencil"></i></button>
+            <li ng-class="{active:isSelectedBookmark(bookmark)}" ng-repeat="bookmark in bookmarks | filter:{category:currentCategory.name}">
+              <button type="button" ng-click="setEditedBookmark(bookmark);startEditing();"><i class="glyphicon glyphicon-pencil"></i></button>
               <button type="button" class="close">&times;</button>
               <a href="{{bookmark.url}}">{{bookmark.name}}</a>
             </li>
@@ -63,7 +63,7 @@
 
               <div class="form-group">
                 <label for="newBookmarkUrl" >Url</label>
-                <input type="text" name="name" id="newBookmarkUrl" ng-model="newBookmark.url" placeholder="http://www.google.com" class="form-control"/>
+                <input type="text" name="url" id="newBookmarkUrl" ng-model="newBookmark.url" placeholder="http://www.google.com" class="form-control"/>
               </div>
 
               <button type="submit" class="btn btn-primary">Save</button>
@@ -73,14 +73,28 @@
 
           <!--Editing section-->
           <div ng-if="shouldShowEditing()">
-             Edit a bookmark
-            <button type="button" class="btn btn-warning pull-right" ng-click="cancelEditing()">Cancel</button>
-          </div>
+            <h4>Edit {{editedBookmark.name}}<h4>
+
+            <form ng-submit="updateBookmark(editedBookmark)" role="form" novalidate >
+              <div class="form-group">
+                <label for="editedBookmarkName">Name</label>
+                <input type="text" name="name" id="editedBookmarkName" ng-model="editedBookmark.name" placeholder="Name the Bookmark" class="form-control"/>
+              </div>
+
+              <div class="form-group">
+                <label for="editedBookmarkUrl" >Url</label>
+                <input type="text" name="url" id="editedBookmarkUrl" ng-model="editedBookmark.url" placeholder="http://www.google.com" class="form-control"/>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Save</button>
+              <button type="button" class="btn btn-warning pull-right" ng-click="cancelEditing()">Cancel</button>
+            </form>
         </section>
       </div>
     </div>
 
     <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf-8" src="app/my-app-module.js"></script>
