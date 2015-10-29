@@ -7,53 +7,67 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
   </head>
 
-  <body ng-controller="MainController" class="container">
-    <h1>{{heading}}</h1>
+  <body ng-controller="MainController">
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="http://equivalent.github.io/angular-app-example/">Angular Example App</a>
+        </div>
 
-    <div class="row">
-      <section class="col-md-5">
-        <h2>Categories</h2>
-
-        <ul>
-          <li><a href="#" ng-click="setCurrentCategory(null)">All</a></li>
-          <li ng-repeat="category in categories" ng-class="{'active':isCurrentCategory(category)}">
-            <a href="#" ng-click="setCurrentCategory(category)">{{category.name}}</a>
-          </li>
+        <ul class="nav navbar-nav">
+          <li><a href="https://github.com/equivalent/angular-app-example">Source Code</a></li>
         </ul>
       </div>
-    </section>
+    </nav>
 
-    <div class="row">
-      <section class="col-md-5">
-        <h2>Bookmarks</h2>
+    <div class="container">
+      <h1>{{heading}}</h1>
 
-        <ul class="list-unstyled">
-          <li ng-repeat="bookmark in bookmarks | filter:{category:currentCategory.name}">
-            <button type="button" ng-click="startEditing()"><i class="glyphicon glyphicon-pencil"></i></button>
-            <button type="button" class="close">&times;</button>
-            <a href="{{bookmark.url}}">{{bookmark.name}}</a>
-          </li>
-        </ul>
+      <div class="row">
+        <section class="col-md-5">
+          <h2>Categories</h2>
 
-        <!--Creating section-->
-        <div ng-if="shouldShowCreating()">
-          <button type="button" ng-click="startCreating()" class="btn btn-link">
-            <i class="glyphicon glyphicon-plus"></i>
-            Create Bookmark
-          </button>
-
-          <div ng-if="isCreating" class="well">
-            Create a bookmark
-            <button type="button" class="btn btn-warning pull-right" ng-click="cancelCreating()">Cancel</button>
-          </div>
-        </div>
-
-        <!--Editing section-->
-        <div ng-if="shouldShowEditing()">
-           Edit a bookmark
-          <button type="button" class="btn btn-warning pull-right" ng-click="cancelEditing()">Cancel</button>
+          <ul>
+            <li><a href="#" ng-click="setCurrentCategory(null)">All</a></li>
+            <li ng-repeat="category in categories" ng-class="{'active':isCurrentCategory(category)}">
+              <a href="#" ng-click="setCurrentCategory(category)">{{category.name}}</a>
+            </li>
+          </ul>
         </div>
       </section>
+
+      <div class="row">
+        <section class="col-md-5">
+          <h2>Bookmarks</h2>
+
+          <ul class="list-unstyled">
+            <li ng-repeat="bookmark in bookmarks | filter:{category:currentCategory.name}">
+              <button type="button" ng-click="startEditing()"><i class="glyphicon glyphicon-pencil"></i></button>
+              <button type="button" class="close">&times;</button>
+              <a href="{{bookmark.url}}">{{bookmark.name}}</a>
+            </li>
+          </ul>
+
+          <!--Creating section-->
+          <div ng-if="shouldShowCreating()">
+            <button type="button" ng-click="startCreating()" class="btn btn-link">
+              <i class="glyphicon glyphicon-plus"></i>
+              Create Bookmark
+            </button>
+
+            <div ng-if="isCreating" class="well">
+              Create a bookmark
+              <button type="button" class="btn btn-warning pull-right" ng-click="cancelCreating()">Cancel</button>
+            </div>
+          </div>
+
+          <!--Editing section-->
+          <div ng-if="shouldShowEditing()">
+             Edit a bookmark
+            <button type="button" class="btn btn-warning pull-right" ng-click="cancelEditing()">Cancel</button>
+          </div>
+        </section>
+      </div>
     </div>
 
     <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
