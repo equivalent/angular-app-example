@@ -116,4 +116,12 @@ angular.module('MyAppModule', [])
   }
 
   $scope.isSelectedBookmark = isSelectedBookmark;
+
+  function removeBookmark(bookmark) {
+    _.remove($scope.bookmarks, function(b) {
+      return b.id == bookmark.id;
+    });
+  }
+
+  $scope.removeBookmark = removeBookmark;
 });
