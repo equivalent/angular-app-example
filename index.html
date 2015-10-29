@@ -3,27 +3,62 @@
   <head lang="en">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="app/app.css" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
   </head>
 
-  <body ng-controller="MainController">
+  <body ng-controller="MainController" class="container">
     <h1>{{heading}}</h1>
 
-    <h2>Categories</h2>
-    <ul>
-      <li><a href="#" ng-click="setCurrentCategory(null)">All</a></li>
-      <li ng-repeat="category in categories" ng-class="{'active':isCurrentCategory(category)}">
-        <a href="#" ng-click="setCurrentCategory(category)">{{category.name}}</a>
-      </li>
-    </ul>
+    <div class="row">
+      <section class="col-md-5">
+        <h2>Categories</h2>
 
-    <h2>Bookmarks</h2>
-    <ul>
-      <li ng-repeat="bookmark in bookmarks | filter:{category:currentCategory.name}">
-        <a href="{{bookmark.url}}">{{bookmark.name}}</a>
-      </li>
-    </ul>
+        <ul>
+          <li><a href="#" ng-click="setCurrentCategory(null)">All</a></li>
+          <li ng-repeat="category in categories" ng-class="{'active':isCurrentCategory(category)}">
+            <a href="#" ng-click="setCurrentCategory(category)">{{category.name}}</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="row">
+      <section class="col-md-5">
+        <h2>Bookmarks</h2>
+
+        <ul class="list-unstyled">
+          <li ng-repeat="bookmark in bookmarks | filter:{category:currentCategory.name}">
+            <button type="button" ng-click="startEditing()"><i class="glyphicon glyphicon-pencil"></i></button>
+            <button type="button" class="close">&times;</button>
+            <a href="{{bookmark.url}}">{{bookmark.name}}</a>
+          </li>
+        </ul>
+
+        <!--Creating section-->
+        <div ng-if="shouldShowCreating()">
+          <button type="button" ng-click="startCreating()" class="btn btn-link">
+            <i class="glyphicon glyphicon-plus"></i>
+            Create Bookmark
+          </button>
+
+          <div ng-if="isCreating" class="well">
+            Create a bookmark
+            <button type="button" class="btn btn-warning pull-right" ng-click="cancelCreating()">Cancel</button>
+          </div>
+        </div>
+
+        <!--Editing section-->
+        <div ng-if="shouldShowEditing()">
+           Edit a bookmark
+          <button type="button" class="btn btn-warning pull-right" ng-click="cancelEditing()">Cancel</button>
+        </div>
+      </section>
+    </div>
+
+    <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8" src="app/my-app-module.js"></script>
   </body>
-
-  <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-  <script type="text/javascript" charset="utf-8" src="app/my-app-module.js"></script>
 </html>
