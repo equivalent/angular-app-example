@@ -20,7 +20,17 @@
       </div>
     </nav>
 
-    <div class="container" ui-view></div>
+    <div class="container">
+      <h1>{{heading}}</h1>
+
+      <div class="row">
+        <section class="col-md-5" ui-view="categories"></section>
+      </div>
+
+      <div class="row">
+        <section class="col-md-5" ui-view="bookmarks"></section>
+      </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>

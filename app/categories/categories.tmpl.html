@@ -1,71 +1,8 @@
-<h1>{{heading}}</h1>
+<h2>Categories</h2>
 
-<div class="row">
-  <section class="col-md-5">
-    <h2>Categories</h2>
-
-    <ul>
-      <li><a href="#" ng-click="setCurrentCategory(null)">All</a></li>
-      <li ng-repeat="category in categories" ng-class="{'active':isCurrentCategory(category)}">
-      <a href="#" ng-click="setCurrentCategory(category)">{{category.name}}</a>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<div class="row">
-  <section class="col-md-5">
-    <h2>Bookmarks</h2>
-
-    <ul class="list-unstyled">
-      <li ng-class="{active:isSelectedBookmark(bookmark)}" ng-repeat="bookmark in bookmarks | filter:{category:currentCategory.name}">
-      <button type="button" ng-click="setEditedBookmark(bookmark);startEditing();"><i class="glyphicon glyphicon-pencil"></i></button>
-      <button type="button" ng-click="removeBookmark(bookmark);" class="close">&times;</button>
-      <a href="{{bookmark.url}}">{{bookmark.name}}</a>
-      </li>
-    </ul>
-
-    <!--Creating section-->
-    <div ng-if="shouldShowCreating()">
-      <button type="button" ng-click="startCreating()" class="btn btn-link">
-        <i class="glyphicon glyphicon-plus"></i>
-        Create Bookmark
-      </button>
-
-      <form ng-show="isCreating" ng-submit="createBookmark(newBookmark)" role="form" novalidate >
-        <div class="form-group">
-          <label for="newBookmarkName">Name</label>
-          <input type="text" name="name" id="newBookmarkName" ng-model="newBookmark.name" placeholder="Name the Bookmark" class="form-control"/>
-        </div>
-
-        <div class="form-group">
-          <label for="newBookmarkUrl" >Url</label>
-          <input type="text" name="url" id="newBookmarkUrl" ng-model="newBookmark.url" placeholder="http://www.google.com" class="form-control"/>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-warning pull-right" ng-click="cancelCreating()">Cancel</button>
-      </form>
-    </div>
-
-    <!--Editing section-->
-    <div ng-if="shouldShowEditing()">
-      <h4>Edit {{editedBookmark.name}}</h4>
-
-      <form ng-submit="updateBookmark(editedBookmark)" role="form" novalidate >
-        <div class="form-group">
-          <label for="editedBookmarkName">Name</label>
-          <input type="text" name="name" id="editedBookmarkName" ng-model="editedBookmark.name" placeholder="Name the Bookmark" class="form-control"/>
-        </div>
-
-        <div class="form-group">
-          <label for="editedBookmarkUrl" >Url</label>
-          <input type="text" name="url" id="editedBookmarkUrl" ng-model="editedBookmark.url" placeholder="http://www.google.com" class="form-control"/>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-warning pull-right" ng-click="cancelEditing()">Cancel</button>
-      </form>
-    </div>
-  </section>
-</div>
+<ul>
+  <li><a href="#" ng-click="setCurrentCategory(null)">All</a></li>
+  <li ng-repeat="category in categories" ng-class="{'active':isCurrentCategory(category)}">
+  <a href="#" ng-click="setCurrentCategory(category)">{{category.name}}</a>
+  </li>
+</ul>

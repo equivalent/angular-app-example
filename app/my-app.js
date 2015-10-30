@@ -3,13 +3,13 @@ angular.module('MyApp',[
   'categories',
   'categories.bookmarks'
 ])
-  .config(function($stateProvider){
+  .config(function($stateProvider, $urlRouterProvider){
     $stateProvider
       .state('myApp', {
-        url: '/',
-        templateUrl: 'app/categories/categories.tmpl.html',
-        controller: 'MainController'
+        url: '',
+        abstract: true
       })
+     $urlRouterProvider.otherwise('/');
     ;
   })
   .controller('MainController', function($scope){
